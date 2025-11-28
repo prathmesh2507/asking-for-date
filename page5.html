@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Date Contract 💌</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;}
+
+    body {
+      font-family: "Fredoka", sans-serif;
+      background: #0a0a0c;
+      overflow: hidden;
+      text-align: center;
+      color: white;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    /* Fireworks Canvas */
+    canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 1;
+    }
+
+    .box {
+      position: relative;
+      z-index: 3;
+      background: rgba(255,255,255,0.08);
+      border-radius: 20px;
+      padding: 35px 25px 45px;
+      box-shadow: 0 0 25px rgba(255, 170, 200, 0.4);
+      backdrop-filter: blur(10px);
+      width: min(550px, 95vw);
+      animation: fadeIn 1s ease;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(30px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    h1 {
+      font-size: 32px;
+      color: #ff72b5;
+      margin-bottom: 20px;
+      text-shadow: 0 0 10px rgba(255,120,180,0.6);
+    }
+
+    .promises {
+      text-align: left;
+      margin: 20px auto;
+      font-size: 22px;
+      font-weight: 500;
+      color: #ffe2f1;
+      line-height: 1.7;
+    }
+
+    .promises input {
+      transform: scale(1.3);
+      margin-right: 10px;
+      accent-color: #ff72b5;
+    }
+
+    .btn {
+      margin-top: 30px;
+      padding: 12px 35px;
+      font-size: 22px;
+      font-weight: 600;
+      background: linear-gradient(135deg, #ff5bb4, #ff86d8);
+      border: none;
+      border-radius: 40px;
+      color: white;
+      cursor: pointer;
+      transition: 0.3s;
+      box-shadow: 0 10px 25px rgba(255, 100, 150, 0.45);
+    }
+
+    .btn:hover {
+      transform: scale(1.05) translateY(-3px);
+    }
+
+    #finalMsg {
+      opacity: 0;
+      margin-top: 30px;
+      font-size: 28px;
+      color: #ff9bd5;
+      font-weight: 600;
+      transition: .6s ease;
+      text-shadow: 0 0 12px rgba(255,140,200,.7);
+    }
+
+    .show {
+      opacity: 1 !important;
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <canvas id="fireworks"></canvas>
+
+  <div class="box">
+    <h1>Hamari Chhoti-si Date Contract 💌✨</h1>
+
+    <div class="promises">
+      <label><input type="checkbox"> Tum late nahi aana 😤👉😜</label><br>
+      <label><input type="checkbox"> Main tumhare liye kuch cute launga/laungi 🎁💗</label><br>
+      <label><input type="checkbox"> Phone bilkul kam use hoga 📵✨</label><br>
+      <label><input type="checkbox"> Ek selfie pakki end me 🤳💞</label><br>
+      <label><input type="checkbox"> Aur… smile zaroor rakhna 😄💖</label>
+    </div>
+
+    <button class="btn" id="agreeBtn">I Agree 💍</button>
+
+    <div id="finalMsg">Deal pakki…  
+      Can’t wait to see you on our date ❤️✨</div>
+  </div>
+
+  <script>
+    // Show final message  
+    document.getElementById("agreeBtn").addEventListener("click", () => {
+      document.getElementById("finalMsg").classList.add("show");
+    });
+
+    // Fireworks script
+    const canvas = document.getElementById('fireworks');
+    const ctx = canvas.getContext('2d');
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    let fireworks = [];
+    let particles = [];
+
+    function random(min, max) {
+      return Math.random() * (max - min) + min;
+    }
+
+    function Firework() {
+      this.x = random(100, canvas.width - 100);
+      this.y = canvas.height;
+      this.targetY = random(50, canvas.height / 2);
+      this.speed = random(4, 7);
+      this.color = `hsl(${random(0,360)}, 80%, 60%)`;
+
+      this.update = () => {
+        this.y -= this.speed;
+        if (this.y <= this.targetY) {
+          for (let i = 0; i < 50; i++) {
+            particles.push(new Particle(this.x, this.y, this.color));
+          }
+          this.done = true;
+        }
+      };
+
+      this.draw = () => {
+        ctx.fillStyle = this.color;
+        ctx.fillRect(this.x, this.y, 3, 3);
+      };
+    }
+
+    function Particle(x, y, color) {
+      this.x = x;
+      this.y = y;
+      this.speedX = random(-3, 3);
+      this.speedY = random(-3, 3);
+      this.decay = random(0.01, 0.03);
+      this.color = color;
+      this.alpha = 1;
+
+      this.update = () => {
+        this.x += this.speedX;
+        this.y += this.speedY;
+        this.alpha -= this.decay;
+      };
+
+      this.draw = () => {
+        ctx.globalAlpha = this.alpha;
+        ctx.fillStyle = this.color;
+        ctx.fillRect(this.x, this.y, 4, 4);
+        ctx.globalAlpha = 1;
+      };
+    }
+
+    function animate() {
+      requestAnimationFrame(animate);
+      ctx.fillStyle = "rgba(0,0,0,0.15)";
+      ctx.fillRect(0,0,canvas.width,canvas.height);
+
+      if (Math.random() < 0.05) fireworks.push(new Firework());
+
+      fireworks = fireworks.filter(f => !f.done);
+      fireworks.forEach(f => { f.update(); f.draw(); });
+
+      particles = particles.filter(p => p.alpha > 0);
+      particles.forEach(p => { p.update(); p.draw(); });
+    }
+
+    animate();
+  </script>
+
+</body>
+</html>

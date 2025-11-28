@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Yayyy 💗💗</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Baloo 2", cursive;
+      background: #ffeef6;
+      min-height: 100vh;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Floating hearts */
+    .hearts {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .heart {
+      position: absolute;
+      font-size: 18px;
+      animation: flyUp 7s linear infinite;
+      opacity: 0.8;
+    }
+
+    @keyframes flyUp {
+      0% {
+        transform: translateY(100vh) scale(0.7);
+        opacity: 0;
+      }
+      15% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-10vh) scale(1.1);
+        opacity: 0;
+      }
+    }
+
+    /* Main Card */
+    .card {
+      z-index: 2;
+      text-align: center;
+      padding: 40px 40px 60px;
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 28px;
+      box-shadow: 0 20px 40px rgba(255, 140, 180, 0.3);
+      backdrop-filter: blur(8px);
+      width: min(700px, 95vw);
+      animation: fadeIn 1.2s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.8);}
+      to { opacity: 1; transform: scale(1);}
+    }
+
+    h1 {
+      color: #ff3f94;
+      font-size: 38px;
+      margin-bottom: 25px;
+    }
+
+    .imgBox {
+      width: 290px;
+      height: 290px;
+      border-radius: 20px;
+      overflow: hidden;
+      margin: auto;
+      box-shadow: 0 18px 35px rgba(0, 0, 0, 0.25);
+      animation: pop 1.2s ease;
+    }
+
+    @keyframes pop {
+      0% {transform: scale(0.6);}
+      100% {transform: scale(1);}
+    }
+
+    .imgBox img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .btns {
+      margin-top: 35px;
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+    }
+
+    .btn {
+      padding: 12px 40px;
+      border-radius: 40px;
+      border: none;
+      cursor: pointer;
+      font-size: 20px;
+      font-weight: 700;
+      transition: 0.2s;
+      box-shadow: 0 10px 18px rgba(0,0,0,0.15);
+    }
+
+    .yes {
+      background: #ff5ea8;
+      color: white;
+    }
+
+    .yes:hover {
+      transform: translateY(-3px) scale(1.04);
+      background: #ff77b8;
+    }
+
+    .no {
+      background: #6b6f83;
+      color: white;
+    }
+
+    .no:hover {
+      transform: translateY(-3px) scale(1.04);
+      background: #83879c;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="hearts" id="hearts"></div>
+
+  <div class="card">
+    <h1>Achee se soch lo..🙈💝</h1>
+
+    <div class="imgBox">
+      <img src="images/baby.jpg" alt="Baby Cute">
+    </div>
+
+    <div class="btns">
+      <!-- ⭐⭐ YAHAN ID ADD KIYA ⭐⭐ -->
+      <button class="btn yes" id="yesBtn">Yes 💞</button>
+      <button class="btn no">No 😳</button>
+    </div>
+  </div>
+
+  <script>
+
+    /* ⭐⭐⭐ THIS IS THE CORRECT YES BUTTON CODE ⭐⭐⭐ */
+    document.getElementById("yesBtn").addEventListener("click", () => {
+        window.location.href = "gift.html";  // 3rd page
+    });
+
+    /* Floating Hearts */
+    const container = document.getElementById("hearts");
+
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.textContent = "💖";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = 4 + Math.random() * 5 + "s";
+      heart.style.fontSize = 18 + Math.random() * 12 + "px";
+      container.appendChild(heart);
+
+      setTimeout(() => heart.remove(), 9000);
+    }
+
+    setInterval(createHeart, 300);
+
+  </script>
+
+</body>
+</html>

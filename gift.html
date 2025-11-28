@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Here a surprise for you ❤️</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Fredoka", sans-serif;
+      background: linear-gradient(145deg, #ffe7ef, #ffeefb, #e8f3ff);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .hearts {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .heart {
+      position: absolute;
+      font-size: 20px;
+      animation: floatUp 7s linear infinite;
+      opacity: 0.85;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(100vh) scale(0.7);
+        opacity: 0;
+      }
+      20% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-10vh) scale(1.2);
+        opacity: 0;
+      }
+    }
+
+    .box {
+      z-index: 10;
+      text-align: center;
+      padding: 40px;
+    }
+
+    h1 {
+      font-size: 40px;
+      color: #ff3d7a;
+      margin-bottom: 30px;
+      animation: fadeIn 1.2s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .gift {
+      font-size: 105px;
+      cursor: pointer;
+      display: inline-block;
+      animation: pop 1.3s ease;
+      transition: .3s;
+    }
+
+    @keyframes pop {
+      0% { transform: scale(0.1); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .gift:hover {
+      transform: scale(1.15) rotate(6deg);
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="hearts" id="hearts"></div>
+
+  <div class="box">
+    <h1>Here a surprise for you❤️</h1>
+
+    <div class="gift" id="giftBtn">🎁</div>
+  </div>
+
+  <script>
+    // floating hearts
+    const h = document.getElementById("hearts");
+
+    function makeHeart() {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.textContent = "💖";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = 5 + Math.random() * 3 + "s";
+      heart.style.fontSize = 18 + Math.random() * 10 + "px";
+      h.appendChild(heart);
+      setTimeout(() => heart.remove(), 9000);
+    }
+    setInterval(makeHeart, 350);
+
+    // gift button → go to date page
+    document.getElementById("giftBtn").addEventListener("click", () => {
+      window.location.href = "date.html";
+    });
+  </script>
+
+</body>
+</html>

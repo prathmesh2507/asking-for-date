@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Date With You 💗</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: "Fredoka", sans-serif;
+      background: linear-gradient(135deg, #ffe6f2, #ffeefb, #e9f2ff);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow-x: hidden;
+    }
+
+    /* Hearts */
+    .hearts {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .heart {
+      position: absolute;
+      font-size: 18px;
+      animation: floatUp 7s linear infinite;
+      opacity: 0.85;
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(100vh) scale(0.6); opacity: 0; }
+      15% { opacity: 1; }
+      100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
+    }
+
+    .card {
+      z-index: 10;
+      text-align: center;
+      padding: 40px 30px 30px;
+      width: min(600px, 90vw);
+      animation: fadeIn 1.2s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(25px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+
+    h1 {
+      font-size: 40px;
+      color: #ff3d7a;
+      margin-bottom: 25px;
+      font-weight: 600;
+    }
+
+    .emoji {
+      font-size: 80px;
+      margin-bottom: 20px;
+      animation: pop 1.1s ease;
+    }
+
+    @keyframes pop {
+      0% { transform: scale(0.1); opacity: 0;}
+      100% { transform: scale(1); opacity: 1;}
+    }
+
+    p {
+      font-size: 22px;
+      margin-bottom: 15px;
+      color: #c72c75;
+      font-weight: 500;
+    }
+
+    input {
+      padding: 10px 15px;
+      border-radius: 10px;
+      outline: none;
+      border: 2px solid #ff7db1;
+      font-size: 18px;
+      font-family: "Fredoka";
+      margin-top: 15px;
+    }
+
+    .btn {
+      margin-top: 35px;
+      padding: 13px 40px;
+      background: linear-gradient(135deg, #ff74a3, #ff89c7);
+      border: none;
+      border-radius: 40px;
+      color: white;
+      font-size: 20px;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: "Fredoka";
+      box-shadow: 0 12px 25px rgba(255, 100, 150, 0.25);
+      transition: 0.25s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-4px) scale(1.05);
+    }
+
+    /* Hidden Message */
+    #msg {
+      opacity: 0;
+      margin-top: 40px;
+      font-size: 32px;
+      font-weight: 600;
+      color: #ff5fa3;
+      text-shadow: 0 3px 10px rgba(255, 90, 150, 0.3);
+      transition: .8s ease;
+      transform: translateY(20px);
+    }
+
+    /* Show animation */
+    .show {
+      opacity: 1 !important;
+      transform: translateY(0px) !important;
+    }
+
+    .plan-btn {
+      margin-top: 25px;
+      padding: 10px 30px;
+      font-size: 18px;
+      border-radius: 30px;
+      border: none;
+      background: #ff5fa3;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 12px 22px rgba(255, 120, 170, 0.3);
+      display: none;
+      transition: 0.3s;
+    }
+
+    .plan-btn:hover {
+      transform: translateY(-4px) scale(1.05);
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <div class="hearts" id="hearts"></div>
+
+  <div class="card">
+    <h1>Let's go for a date! ❤️</h1>
+
+    <div class="emoji">😘</div>
+
+    <p>Pick our special day 💐💞</p>
+
+    <input type="date" id="dateInput">
+
+    <br>
+
+    <button class="btn" id="specialBtn">Let's Make This Special 💕</button>
+
+    <div id="msg"></div>
+
+    <!-- 5th Page Button -->
+    <button class="plan-btn" id="planBtn">Let's go for a plan! 🌻</button>
+  </div>
+
+  <script>
+    // Hearts
+    const h = document.getElementById("hearts");
+    function makeHeart() {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.textContent = "💖";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = 5 + Math.random() * 3 + "s";
+      heart.style.fontSize = 16 + Math.random() * 12 + "px";
+      h.appendChild(heart);
+      setTimeout(() => heart.remove(), 9000);
+    }
+    setInterval(makeHeart, 300);
+
+    // Buttons
+    const btn = document.getElementById("specialBtn");
+    const msg = document.getElementById("msg");
+    const planBtn = document.getElementById("planBtn");
+    const dateInput = document.getElementById("dateInput");
+
+    btn.addEventListener("click", () => {
+      let date = dateInput.value;
+
+      if (!date) {
+        msg.innerHTML = "Choose a date first, Madam Jii 💗✨";
+      } else {
+        msg.innerHTML = `I’m already excited… our special day will be magical ✨💗`;
+      }
+
+      msg.classList.add("show");
+      planBtn.style.display = "inline-block";
+    });
+
+    /* ⭐ FINAL ADDITION — Link to 5th Page ⭐ */
+    planBtn.addEventListener("click", () => {
+      window.location.href = "page5.html";  
+    });
+  </script>
+
+</body>
+</html>
