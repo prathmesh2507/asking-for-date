@@ -59,7 +59,7 @@ proposal-web-experience/
 ## ⚙️ How to Run Locally
 
 - 1️⃣ Clone the repository
-    - git clone https://github.com/prathmesh2507/proposal-web-experience.git
+    - git clone https://github.com/prathmesh2507/asking-for-date.git
 
 - 2️⃣ Navigate into the project folder
     - cd proposal-web-experience
