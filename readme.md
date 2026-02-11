@@ -31,7 +31,6 @@ This project highlights how simple web technologies can be used to build **emoti
 - 📅 Date picker interaction
 - 🎆 Fireworks animation using HTML Canvas
 - 📱 Fully responsive design
-- 🚫 No external JS frameworks used
 
 ---
 
