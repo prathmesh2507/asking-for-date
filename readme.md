@@ -30,7 +30,7 @@ This project highlights how simple web technologies can be used to build **emoti
 - 🏃 Playful “No button” movement logic
 - 📅 Date picker interaction
 - 🎆 Fireworks animation using HTML Canvas
-- 📱 Fully responsive design
+- 📱 Fully Responsive design
 
 ---
 
@@ -48,7 +48,7 @@ proposal-web-experience/
 ├── images/           # Images used across pages
 │   ├── cat.jpg
 │   ├── baby.jpg
-│   └── ...
+│   └── ....
 │
 └── README.md
 ```
