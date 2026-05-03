@@ -28,7 +28,6 @@ This project highlights how simple web technologies can be used to build **emoti
 - 💖 Floating heart animations using pure CSS & JS
 - 🎁 Surprise reveal pages with smooth transitions
 - 🏃 Playful “No button” movement logic
-- 📅 Date picker interaction
 - 🎆 Fireworks animation using HTML Canvas
 - 📱 Fully Responsive design
 
