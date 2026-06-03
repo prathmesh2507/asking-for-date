@@ -64,7 +64,7 @@ proposal-web-experience/
     - cd proposal-web-experience
 
 - 3️⃣ Open index.html in your browser
-    - Just double-click index.html or use Live Server
+    - Just double-click index.html or use Live Server.
 
 ---
 
